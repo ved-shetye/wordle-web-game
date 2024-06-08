@@ -17,6 +17,7 @@ function Board({ board, currentRow, submittedRows, word }) {
               className={`w-14 h-14 border-2 flex items-center justify-center text-xl ${
                 submittedRows.includes(rowIndex) ? getColor(letter, colIndex) : ''
               }`}
+              style={{ color: letter ? 'white' : 'black' }} // Dynamically set text color based on whether the box is filled
             >
               {letter}
             </div>

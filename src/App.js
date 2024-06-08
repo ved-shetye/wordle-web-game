@@ -12,9 +12,9 @@ function App() {
     <div className="App h-screen flex flex-col justify-center items-center bg-gray-100">
       {!gameStarted ? (
         <div className="text-center">
-          <h1 className="text-4xl font-bold mb-8">Wordle</h1>
+          <h1 className="front-page-text font-bold mb-8">Wordle</h1>
           <button
-            className="px-6 py-3 bg-blue-500 text-white rounded-lg"
+            className="px-8 py-3 bg-green-500 text-white rounded-3xl front-page-button"
             onClick={() => setGameStarted(true)}
           >
             Start
