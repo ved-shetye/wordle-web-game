@@ -1,23 +1,22 @@
 import React from 'react';
 
 function Board({ board, currentRow, submittedRows, word }) {
-  const getColor = (letter, index) => {
-    if (letter === word[index]) return 'bg-green-500';
-    if (word.includes(letter)) return 'bg-yellow-500';
-    return 'bg-gray-400';
+  const getClassName = (letter, index, rowIndex) => {
+    if (!letter) return 'board-box empty-box';
+    if (!submittedRows.includes(rowIndex)) return 'board-box';
+    if (letter === word[index]) return 'board-box correct-position';
+    if (word.includes(letter)) return 'board-box correct-letter';
+    return 'board-box incorrect-letter';
   };
 
   return (
-    <div className="grid grid-rows-6 gap-1 mt-8">
+    <div className="flex flex-col items-center">
       {board.map((row, rowIndex) => (
-        <div key={rowIndex} className="grid grid-cols-5 gap-1">
+        <div key={rowIndex} className="flex justify-center">
           {row.map((letter, colIndex) => (
             <div
               key={colIndex}
-              className={`w-12 md:w-14 h-12 md:h-14 border-2 flex items-center justify-center text-md md:text-xl ${
-                submittedRows.includes(rowIndex) ? getColor(letter, colIndex) : ''
-              }`}
-              style={{ color: letter ? 'white' : 'black' }} // Dynamically set text color based on whether the box is filled
+              className={getClassName(letter, colIndex, rowIndex)}
             >
               {letter}
             </div>

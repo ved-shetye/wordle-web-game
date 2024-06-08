@@ -1,33 +1,160 @@
-.App 
-.front-page-button {
-  font-size: 2rem; /* Decreased font size for mobile */
-  padding: 12px 24px; /* Increased padding for better touchability */
-}
-
-.front-page-text {
-  font-size: 3rem;
-  color: aliceblue; /* Decreased font size for mobile */
-}
-
-/* No changes to other styles */
-
+/* General App Styling */
 .App {
-  background-color: #121212; /* Dark shade of black */
+  background-color: #121212; /* Dark background */
+  color: #00ff00; /* Default neon green text color */
+  font-family: 'Arial', sans-serif;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+/* Front Page Styling */
+.front-page-text {
+  color: #00ff00; /* Neon green */
+  font-size: 3rem;
+  text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 30px #00ff00;
+}
+
+.front-page-description {
+  color: #00ff00; /* Neon green */
+  font-size: 1rem;
+  text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00;
+}
+
+.front-page-button {
+  background-color: #121212;
+  color: #00ff00;
+  border: 2px solid #00ff00;
+  text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00;
+  transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+}
+
+.front-page-button:hover {
+  background-color: #00ff00;
+  color: #121212;
+  box-shadow: 0 0 20px #00ff00, 0 0 30px #00ff00;
+}
+
+/* Board Styling */
+.Board {
+  margin-top: 1rem; /* Adjust as needed */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .board-box {
-  color: white; /* White text color */
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 5px;
+  background-color: #121212;
+  border: 2px solid #00ff00;
+  color: white; /* Default white text color */
+  text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00;
+  transition: background-color 0.3s, border-color 0.3s, text-shadow 0.3s;
 }
 
+/* Color logic for correct and incorrect letters */
+.correct-position {
+  background-color: #00ff00;
+  border-color: #00ff00;
+  text-shadow: 0 0 20px #00ff00, 0 0 30px #00ff00;
+}
+
+.correct-letter {
+  background-color: #c5f40a;
+  border-color: #c5f40a;
+  text-shadow: 0 0 20px #c5f40a, 0 0 30px #c5f40a;
+}
+
+.incorrect-letter {
+  background-color: #393737;
+  border-color: #393737;
+  text-shadow: 0 0 20px #393737, 0 0 30px #393737;
+}
+
+.empty-box {
+  background-color: #4a4a4a; /* Dark gray for empty boxes */
+}
+
+/* Keyboard Styling */
 .keyboard-key {
-  color: rgb(54, 52, 52); /* Black text color */
-}
-
-
-.board-box:hover {
-  background-color: #4a4a4a; /* Dark gray on hover */
+  width: 40px;
+  height: 40px;
+  margin: 3px;
+  background-color: #121212;
+  color: #00ff00;
+  border: 2px solid #00ff00;
+  text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00;
+  transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
 }
 
 .keyboard-key:hover {
-  background-color: #4a4a4a; /* Dark gray on hover */
+  background-color: #00ff00;
+  color: #121212;
+  box-shadow: 0 0 20px #00ff00, 0 0 30px #00ff00;
+}
+
+.keyboard-key.wide-key {
+  width: 60px;
+}
+
+/* Modal Styling */
+.modal-background {
+  background-color: rgba(0, 0, 0, 0.75);
+}
+
+.modal-content {
+  background-color: #121212;
+  color: #00ff00;
+  border: 2px solid #00ff00;
+  text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00;
+}
+
+.modal-button {
+  background-color: #121212;
+  color: #00ff00;
+  border: 2px solid #00ff00;
+  text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00;
+  transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+}
+
+.modal-button:hover {
+  background-color: #00ff00;
+  color: #121212;
+  box-shadow: 0 0 20px #00ff00, 0 0 30px #00ff00;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 600px) {
+  .board-box {
+    width: 35px;
+    height: 35px;
+    margin: 2px;
+  }
+
+  .keyboard-key {
+    width: 30px;
+    height: 30px;
+    margin: 2px;
+  }
+
+  .keyboard-key.wide-key {
+    width: 55px;
+  }
+
+  .front-page-text {
+    font-size: 2.5rem;
+  }
+
+  .front-page-description {
+    font-size: 1rem;
+  }
+
+  .front-page-button {
+    padding: 6px 12px;
+    font-size: 1rem;
+  }
 }

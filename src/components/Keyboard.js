@@ -2,19 +2,18 @@ import React from 'react';
 
 const keys = [
   'QWERTYUIOP',
-  'ASDFGHJKL',
-  'ZXCVBNM',
+  'ASDFGHJKL'
 ];
 
 function Keyboard({ handleKeyClick }) {
   return (
-    <div className="mt-8">
+    <div className="mt-4">
       {keys.map((keyRow, rowIndex) => (
         <div key={rowIndex} className="flex justify-center mb-1">
           {keyRow.split('').map((key) => (
             <button
               key={key}
-              className="w-7 md:w-8 h-7 md:h-8 m-1 bg-gray-300 text-xs md:text-sm rounded-lg"
+              className="keyboard-key"
               onClick={() => handleKeyClick(key)}
             >
               {key}
@@ -24,13 +23,24 @@ function Keyboard({ handleKeyClick }) {
       ))}
       <div className="flex justify-center mb-1">
         <button
-          className="w-14 md:w-16 h-7 md:h-8 m-1 bg-red-300 text-xs md:text-sm rounded-lg"
+          className="keyboard-key wide-key"
           onClick={() => handleKeyClick('DELETE')}
         >
-          Undo
+          Delete
         </button>
+        <div className="flex">
+          {'ZXCVBNM'.split('').map((key) => (
+            <button
+              key={key}
+              className="keyboard-key"
+              onClick={() => handleKeyClick(key)}
+            >
+              {key}
+            </button>
+          ))}
+        </div>
         <button
-          className="w-14 md:w-16 h-7 md:h-8 m-1 bg-green-300 text-xs md:text-sm rounded-lg"
+          className="keyboard-key wide-key"
           onClick={() => handleKeyClick('SUBMIT')}
         >
           Submit
