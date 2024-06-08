@@ -1,19 +1,24 @@
-// src/components/Board.js
 import React from 'react';
 
-function Board() {
-  const rows = Array(6).fill(Array(5).fill(''));
+const WORD = 'REACT'; // The correct word to guess
+
+function Board({ board, currentRow }) {
+  const getColor = (letter, index) => {
+    if (letter === WORD[index]) return 'bg-green-500';
+    if (WORD.includes(letter)) return 'bg-yellow-500';
+    return 'bg-gray-400';
+  };
 
   return (
     <div className="grid grid-rows-6 gap-1 mt-8">
-      {rows.map((row, rowIndex) => (
+      {board.map((row, rowIndex) => (
         <div key={rowIndex} className="grid grid-cols-5 gap-1">
-          {row.map((_, colIndex) => (
+          {row.map((letter, colIndex) => (
             <div
               key={colIndex}
-              className="w-16 h-16 border-2 border-gray-400 flex items-center justify-center text-xl"
+              className={`w-16 h-16 border-2 flex items-center justify-center text-xl ${rowIndex < currentRow ? getColor(letter, colIndex) : ''}`}
             >
-              {/* Here will go the letter */}
+              {letter}
             </div>
           ))}
         </div>

@@ -6,9 +6,9 @@ const keys = [
   'ZXCVBNM',
 ];
 
-function Keyboard() {
+function Keyboard({ handleKeyClick }) {
   return (
-    <div className="mt-auto mb-8">
+    <div className="mt-8">
       {keys.map((keyRow, rowIndex) => (
         <div key={rowIndex} className="flex justify-center mb-1">
           {keyRow.split('').map((key) => (
@@ -24,11 +24,6 @@ function Keyboard() {
       ))}
     </div>
   );
-}
-
-function handleKeyClick(key) {
-  console.log(key);
-  // Handle key click logic here
 }
 
 export default Keyboard;
