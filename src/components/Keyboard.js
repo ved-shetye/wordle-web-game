@@ -14,7 +14,7 @@ function Keyboard({ handleKeyClick }) {
           {keyRow.split('').map((key) => (
             <button
               key={key}
-              className="w-12 h-12 m-1 bg-gray-300 text-black rounded-lg"
+              className="w-7 md:w-8 h-7 md:h-8 m-1 bg-gray-300 text-xs md:text-sm rounded-lg"
               onClick={() => handleKeyClick(key)}
             >
               {key}
@@ -24,13 +24,13 @@ function Keyboard({ handleKeyClick }) {
       ))}
       <div className="flex justify-center mb-1">
         <button
-          className="w-24 h-12 m-1 bg-red-300 text-black rounded-lg"
+          className="w-14 md:w-16 h-7 md:h-8 m-1 bg-red-300 text-xs md:text-sm rounded-lg"
           onClick={() => handleKeyClick('DELETE')}
         >
-          Delete
+          Undo
         </button>
         <button
-          className="w-24 h-12 m-1 bg-green-300 text-black rounded-lg"
+          className="w-14 md:w-16 h-7 md:h-8 m-1 bg-green-300 text-xs md:text-sm rounded-lg"
           onClick={() => handleKeyClick('SUBMIT')}
         >
           Submit
