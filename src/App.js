@@ -111,7 +111,7 @@ function WordleGame() {
 
   return (
     <div className="w-full h-full flex flex-col items-center justify-between">
-      <p className="mb-2 text-lg font-semibold text-neon-green">Guess the word</p>
+      <p className="mb-2 text-4xl pt-5 font-semibold text-neon-green">Guess the word</p>
       <Board board={board} currentRow={currentRow} submittedRows={submittedRows} word={word} />
       <Keyboard handleKeyClick={handleKeyClick} />
       {showModal && <Modal message={modalMessage} onClose={handleCloseModal} />}
