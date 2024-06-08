@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import Board from './components/Board';
 import Keyboard from './components/Keyboard';
+import Modal from './components/Modal';
+import { getRandomWord } from './words';
 
 function App() {
   const [gameStarted, setGameStarted] = useState(false);
@@ -29,9 +31,26 @@ function WordleGame() {
   const [board, setBoard] = useState(Array(6).fill().map(() => Array(5).fill('')));
   const [currentRow, setCurrentRow] = useState(0);
   const [currentCol, setCurrentCol] = useState(0);
+  const [word, setWord] = useState(getRandomWord());
+  const [showModal, setShowModal] = useState(false);
+  const [modalMessage, setModalMessage] = useState('');
+  const [submittedRows, setSubmittedRows] = useState([]);
+
+  useEffect(() => {
+    setWord(getRandomWord());
+  }, []);
 
   const handleKeyClick = (key) => {
-    if (currentCol < 5) {
+    if (key === 'DELETE') {
+      if (currentCol > 0) {
+        const newBoard = [...board];
+        newBoard[currentRow][currentCol - 1] = '';
+        setBoard(newBoard);
+        setCurrentCol(currentCol - 1);
+      }
+    } else if (key === 'SUBMIT') {
+      handleSubmit();
+    } else if (currentCol < 5) {
       const newBoard = [...board];
       newBoard[currentRow][currentCol] = key;
       setBoard(newBoard);
@@ -42,27 +61,35 @@ function WordleGame() {
   const handleSubmit = () => {
     if (currentCol === 5) {
       const guess = board[currentRow].join('');
-      if (guess === 'REACT') {  // Change 'REACT' to the word of your choice
-        alert('You guessed the word!');
+      if (guess === word) {
+        setModalMessage('Congratulations! You guessed the word!');
+        setShowModal(true);
+        setSubmittedRows([...submittedRows, currentRow]);
       } else if (currentRow < 5) {
+        setSubmittedRows([...submittedRows, currentRow]);
         setCurrentRow(currentRow + 1);
         setCurrentCol(0);
       } else {
-        alert('Game Over! The word was REACT');
+        setModalMessage(`Hard luck! The word was ${word}`);
+        setShowModal(true);
       }
     }
   };
 
+  const handleCloseModal = () => {
+    setShowModal(false);
+    setBoard(Array(6).fill().map(() => Array(5).fill('')));
+    setCurrentRow(0);
+    setCurrentCol(0);
+    setSubmittedRows([]);
+    setWord(getRandomWord());
+  };
+
   return (
     <div className="w-full h-full flex flex-col items-center justify-between">
-      <Board board={board} currentRow={currentRow} />
+      <Board board={board} currentRow={currentRow} submittedRows={submittedRows} word={word} />
       <Keyboard handleKeyClick={handleKeyClick} />
-      <button
-        className="px-6 py-3 bg-green-500 text-white rounded-lg mt-4"
-        onClick={handleSubmit}
-      >
-        Submit
-      </button>
+      {showModal && <Modal message={modalMessage} onClose={handleCloseModal} />}
     </div>
   );
 }
