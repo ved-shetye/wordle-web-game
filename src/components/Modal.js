@@ -1,3 +1,5 @@
+// src/components/Modal.js
+
 import React from 'react';
 
 function Modal({ message, onClose }) {

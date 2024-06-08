@@ -3,10 +3,20 @@ import './css/App.css';
 import Board from './components/Board';
 import Keyboard from './components/Keyboard';
 import Modal from './components/Modal';
+import HowToPlayModal from './components/HowToPlayModal';
 import { getRandomWord } from './words';
 
 function App() {
   const [gameStarted, setGameStarted] = useState(false);
+  const [showHowToPlay, setShowHowToPlay] = useState(false);
+
+  const handleShowHowToPlay = () => {
+    setShowHowToPlay(true);
+  };
+
+  const handleCloseHowToPlay = () => {
+    setShowHowToPlay(false);
+  };
 
   return (
     <div className="App h-screen flex flex-col justify-center items-center">
@@ -14,12 +24,21 @@ function App() {
         <div className="text-center">
           <h1 className="front-page-text font-bold mb-2">Wordle</h1>
           <p className="front-page-description mb-4">Try to guess the hidden word in six attempts!</p>
-          <button
-            className="front-page-button px-8 py-3 rounded-3xl"
-            onClick={() => setGameStarted(true)}
-          >
-            Start
-          </button>
+          <div>
+            <button
+              className="front-page-button px-8 py-3 rounded-3xl"
+              onClick={() => setGameStarted(true)}
+            >
+              Start
+            </button>
+            <button
+              className="front-page-button px-8 py-3 rounded-3xl ml-4"
+              onClick={handleShowHowToPlay}
+            >
+              How to Play
+            </button>
+          </div>
+          {showHowToPlay && <HowToPlayModal onClose={handleCloseHowToPlay} />}
         </div>
       ) : (
         <WordleGame />
@@ -61,16 +80,20 @@ function WordleGame() {
 
   const handleSubmit = () => {
     if (currentCol === 5) {
-      const guess = board[currentRow].join('');
+      const guess = board[currentRow].join('').toUpperCase();
+      console.log(`Submitted guess: ${guess}`); // Log the guess
       if (guess === word) {
+        console.log('Correct guess!'); // Log when the guess is correct
         setModalMessage('Congratulations! You guessed the word!');
         setShowModal(true);
         setSubmittedRows([...submittedRows, currentRow]);
       } else if (currentRow < 5) {
+        console.log('Incorrect guess, moving to next row.'); // Log when moving to the next row
         setSubmittedRows([...submittedRows, currentRow]);
         setCurrentRow(currentRow + 1);
         setCurrentCol(0);
       } else {
+        console.log('Game over, no more attempts left.'); // Log when the game is over
         setModalMessage(`Hard luck! The word was ${word}`);
         setShowModal(true);
       }
