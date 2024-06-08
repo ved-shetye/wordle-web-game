@@ -12,8 +12,8 @@ function App() {
     <div className="App h-screen flex flex-col justify-center items-center bg-gray-100">
       {!gameStarted ? (
         <div className="text-center">
-          <h1 className="front-page-text font-bold mb-8">Wordle</h1>
-          <p className="front-page-description mb-4">Try to guess the hidden word in six attempts!</p>
+          <h1 className="front-page-text font-bold mb-8 p-0">Wordle</h1>
+          <p className="front-page-description text-white mb-4">Try to guess the hidden word in six attempts!</p>
           <button
             className="px-8 py-3 bg-green-500 text-white rounded-3xl front-page-button"
             onClick={() => setGameStarted(true)}
@@ -88,7 +88,7 @@ function WordleGame() {
 
   return (
     <div className="w-full h-full flex flex-col items-center justify-between">
-      <p className="mb-2 text-lg font-semibold text-white">Guess the word</p>
+      <p className="mb-2 p-0 text-2xl font-semibold text-white">Guess the word</p>
       <Board board={board} currentRow={currentRow} submittedRows={submittedRows} word={word} />
       <Keyboard handleKeyClick={handleKeyClick} />
       {showModal && <Modal message={modalMessage} onClose={handleCloseModal} />}
